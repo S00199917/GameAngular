@@ -1,1 +1,17 @@
-<p>game-details works!</p>
+<div class="row card-body">
+    <div class="col card-title">
+        <h3>{{game?.name}}</h3>
+    </div>
+
+    <div class="col">
+        Developers: {{game?.developers}}
+    </div>
+    <div class="col">
+        Year released: {{game?.release}}
+    </div>
+    <div class="col" *ngIf="game?.mainGenre != null">
+        Main genre: {{game?.mainGenre}}
+    </div>
+    <div class="col" *ngIf="game?.mainGenre == null">
+    </div>
+</div>

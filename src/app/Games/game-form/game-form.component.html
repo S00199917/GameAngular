@@ -1,1 +1,42 @@
-<p>game-form works!</p>
+<form [formGroup]="gameForm" (ngSubmit) = "onSubmit()" class>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeForm()"></button>
+
+    <div class="mb-3">
+        <label for="name" class="form-label"> Name</label>
+        <input id="name" type="text" formControlName="name" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="release" class="form-label"> Year Released</label>
+        <input id="release" type="number" formControlName="release" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="developers" class="form-label"> Developers</label>
+        <input id="developers" type="text" formControlName="developers" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="mainGenre" class="form-label"> Main Genre</label>
+        <input id="mainGenre" type="text" formControlName="mainGenre" class="form-control">
+    </div>
+
+    <button type="submit" [disabled]= "!gameForm?.valid" class="btn btn-primary" >Submit</button>
+
+    <div *ngIf="name?.invalid && name?.touched"  class="alert alert-danger" >
+        Name is required and must be more than 3 characters
+    </div>
+
+    <div *ngIf="release?.invalid && release?.touched"  class="alert alert-danger" >
+        Year released is required to be less than the current year and after the 1900s and a number
+    </div>
+
+    <div *ngIf="developers?.invalid && developers?.touched"  class="alert alert-danger" >
+        Developers is required and must be more than 3 characters
+    </div>
+
+    <div *ngIf="mainGenre?.invalid && mainGenre?.touched"  class="alert alert-danger" >
+        Main genre isn't required but if used, must be more than 3 characters
+    </div>
+
+</form>

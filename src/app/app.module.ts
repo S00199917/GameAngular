@@ -7,6 +7,8 @@ import { GameDetailsComponent } from './Games/game-details/game-details.componen
 import { GameFormComponent } from './Games/game-form/game-form.component';
 import { GameListComponent } from './Games/game-list/game-list.component';
 import { GameRowComponent } from './Games/game-row/game-row.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,10 @@ import { GameRowComponent } from './Games/game-row/game-row.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

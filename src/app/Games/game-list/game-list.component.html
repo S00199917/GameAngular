@@ -1,1 +1,20 @@
-<p>game-list works!</p>
+<div class="container-fluid">
+  <div *ngIf="message" class="alert alert-warning alert-dismissible show" role="alert">
+    <strong>Opps</strong> {{message}}
+    <button type="button" class="btn-close" (click)="dismissAlert()" aria-label="Close"></button>
+  </div>
+  
+  <button (click)="openAddGame()" *ngIf="!showGameForm" class="btn btn-lg btn-outline-primary">Add Game</button>
+  
+  <button (click)="openEditGame()" *ngIf="!showGameForm" [disabled]="!currentGame" class="btn btn-lg btn-outline-primary">Edit Game</button>
+
+  <button (click)="deleteGame()" *ngIf="!showGameForm" [disabled]="!currentGame" class="btn btn-lg btn-outline-danger">Delete Game</button>
+
+  <app-game-form *ngIf="showGameForm" (newGameEvent)="addNewGame($event)" (gameFormClose)="gameFormClose($event)" [game]="currentGame"></app-game-form>
+
+  <div *ngIf="!showGameForm">
+    <app-game-row class="card" *ngFor="let g of gameList" [game]="g" (click)='clicked(g)' [class.bg-info]="isSelected(g)" [class.text-white]="isSelected(g)"></app-game-row>
+  </div>
+
+  <app-game-details *ngIf="currentGame!" [game]="currentGame"></app-game-details>
+</div>
