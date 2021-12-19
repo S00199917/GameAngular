@@ -14,6 +14,8 @@ export class GameListComponent implements OnInit {
 
   currentGame?: Games = undefined;
 
+  check!: boolean;
+
   constructor(private gameService: GamesService) { }
 
   ngOnInit(): void {
@@ -36,7 +38,6 @@ export class GameListComponent implements OnInit {
       return false;
     }
     else {
-
       return game._id === this.currentGame._id;
     }
   }
@@ -116,6 +117,8 @@ export class GameListComponent implements OnInit {
 // hit the button by mistake
 
   deleteGame() {
+    if (!confirm("Are you sure you want to delete")) return;
+
     console.log('deleting a game ');
     if (this.currentGame) {
       this.gameService.deleteGame(this.currentGame._id)

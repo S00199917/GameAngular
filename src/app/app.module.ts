@@ -7,8 +7,13 @@ import { GameDetailsComponent } from './Games/game-details/game-details.componen
 import { GameFormComponent } from './Games/game-form/game-form.component';
 import { GameListComponent } from './Games/game-list/game-list.component';
 import { GameRowComponent } from './Games/game-row/game-row.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
+import { HomeComponent } from './home/home.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { JwtInterceptor } from './helper/jwtinterceptor.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     GameDetailsComponent,
     GameFormComponent,
     GameListComponent,
-    GameRowComponent
+    GameRowComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +34,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
